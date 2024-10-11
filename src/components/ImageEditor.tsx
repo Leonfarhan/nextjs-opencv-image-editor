@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import React, { useState, useRef } from 'react';
 import { applyGrayscale, cropImage } from '@/utils/opencv';
@@ -8,7 +8,7 @@ export default function ImageEditor() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [processedImage, setProcessedImage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const imageRef = useRef<HTMLImageElement>(null);
+    const imageRef = useRef<HTMLImageElement | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,6 +85,8 @@ export default function ImageEditor() {
                     />
                     <canvas
                         ref={canvasRef}
+                        width={400}
+                        height={400}
                         className={`max-w-full h-auto border rounded-xl shadow-xl ${processedImage ? 'block' : 'hidden'} transition-all duration-500`}
                         style={{width: '100%', maxWidth: '400px', height: 'auto'}}
                     />
